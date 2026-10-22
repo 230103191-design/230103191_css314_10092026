@@ -1,0 +1,31 @@
+======================================================================
+TASK 4 ¡ª Work Stealing & Scheduling Under Skew
+======================================================================
+Student ID    : 230103191
+OS            : Windows 10
+CPU model     : Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+Logical cores : 8
+Workers       : 4
+Items         : 1000
+Chunk size    : 5
+======================================================================
+
+[Strategy A] Static equal-block distribution ...
+    Wall time         : 0.916 s
+    Finish delta      : 90.3 ms
+    Per-thread finish : [417358.837, 417358.91, 417358.82, 417358.902]
+
+[Strategy B] Dynamic queue (chunk = 5) ...
+    Wall time         : 0.913 s
+    Finish delta      : 13.0 ms
+    Per-thread finish : [417359.819, 417359.812, 417359.815, 417359.825]
+
+----------------------------------------------------------------------
+Strategy                     |  Wall Time |   Finish Delta
+----------------------------------------------------------------------
+A: Static                    |    0.916 s |        90.3 ms
+B: Dynamic (chunk=5)         |    0.913 s |        13.0 ms
+----------------------------------------------------------------------
+Dynamic speedup : 1.00x
+Load-balance gain: delta reduced by 6.9x
+======================================================================
