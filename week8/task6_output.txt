@@ -1,0 +1,38 @@
+======================================================================
+TASK 6 ¡ª Synchronization Cost & Data Loss
+======================================================================
+Student ID    : 230103191
+OS            : Windows 10
+CPU model     : Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+Logical cores : 8
+Threads       : 4
+Increments    : 2,000,000 per thread
+Expected total: 8,000,000
+======================================================================
+
+[1] Unsynchronized shared counter ...
+    Wall time     : 0.995 s
+    Actual value  : 8,000,000
+    Lost updates  : 0 (0.00%)
+
+[2] Lock-protected shared counter ...
+    Wall time     : 4.037 s
+    Actual value  : 8,000,000
+    Correct       : True
+
+[3] Lock-free correct counter (local accumulators) ...
+    Wall time     : 0.483 s
+    Actual value  : 8,000,000
+    Correct       : True
+
+----------------------------------------------------------------------
+Version                      |       Time |        Final | Correct
+----------------------------------------------------------------------
+Unsynchronized               |    0.995 s |    8,000,000 |      no
+Locked                       |    4.037 s |    8,000,000 |    True
+Lock-free (local)            |    0.483 s |    8,000,000 |    True
+----------------------------------------------------------------------
+Locking time penalty vs. unsynchronized : 4.06x
+Local-accumulator penalty vs. unsafe    : 0.49x
+Data loss without lock                  : 0.00%
+======================================================================
