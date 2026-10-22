@@ -1,0 +1,10 @@
+============================================================
+Student ID    : 230103191
+OS            : Windows 10
+CPU model     : Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+Logical cores : 8
+============================================================
+Generated 20,000,000 float64 elements (seed=230103191)
+Sum           : 4242.040822
+Std (pop.)    : 0.999873
+Time          : 5453.05 ms
