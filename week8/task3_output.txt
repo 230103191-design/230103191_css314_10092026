@@ -1,0 +1,27 @@
+======================================================================
+TASK 3 ¡ª Cache Line Contention (False Sharing)
+======================================================================
+Student ID    : 230103191
+OS            : Windows 10
+CPU model     : Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+Logical cores : 8
+Threads used  : 4
+Iterations    : 50,000,000 per thread
+======================================================================
+
+[1] Unpadded shared array (false sharing) ...
+    Time   : 15.104 s
+    Total  : 200,000,000
+
+[2] Padded / local accumulation (no false sharing) ...
+    Time   : 8.164 s
+    Total  : 200,000,000
+
+----------------------------------------------------------------------
+Version                      |       Time |      Ratio
+----------------------------------------------------------------------
+Unpadded Shared              |   15.104 s |      1.00x
+Padded / Local               |    8.164 s |      1.85x
+----------------------------------------------------------------------
+False-sharing penalty: 1.85x slower unpadded
+======================================================================
