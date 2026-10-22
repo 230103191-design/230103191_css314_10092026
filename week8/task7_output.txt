@@ -1,0 +1,42 @@
+==========================================================================
+TASK 7 ¡ª Arithmetic Intensity vs. Memory Bottlenecks
+==========================================================================
+Student ID    : 230103191
+OS            : Windows 10
+CPU model     : Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+Logical cores : 8
+Array size    : 30,000,000 float64 elements (0.24 GB)
+Repeats       : 3 (min taken)
+==========================================================================
+
+[Kernel: A: Memory-Bound (B = A)]
+Cores   |       Time |  Speedup |  Efficiency |    Bandwidth
+--------------------------------------------------------------
+1       |    0.021 s |    1.00x |       1.00 |      33.9 GB/s
+2       |    0.016 s |    1.31x |       0.66 |      44.5 GB/s
+8       |    0.017 s |    1.28x |       0.16 |      43.3 GB/s
+--------------------------------------------------------------
+
+[Kernel: B: Compute-Bound (sin*cos + tan)]
+Cores   |       Time |  Speedup |  Efficiency |    Bandwidth
+--------------------------------------------------------------
+1       |    1.325 s |    1.00x |       1.00 |       0.5 GB/s
+2       |    0.697 s |    1.90x |       0.95 |       1.0 GB/s
+8       |    0.293 s |    4.52x |       0.56 |       2.5 GB/s
+--------------------------------------------------------------
+
+==========================================================================
+SCALING ANALYSIS
+==========================================================================
+Memory-Bound (copy)          : max speedup 1.28x on 8 cores -> efficiency 0.16
+Compute-Bound (sin*cos+tan)  : max speedup 4.52x on 8 cores -> efficiency 0.56
+
+Conclusion:
+  Kernel A (memory copy) scaled POORLY because it is bandwidth-bound:
+  as soon as 2+ cores run, they compete for the same DRAM bus/channels
+  and saturate the memory controller. Adding more cores cannot help
+  because RAM bandwidth is already the bottleneck (efficiency 0.16).
+  Kernel B (sin*cos+tan) scaled BETTER because the transcendental
+  math dominates runtime, so cores spend most of their time in ALU,
+  not waiting on memory (efficiency 0.56).
+==========================================================================
