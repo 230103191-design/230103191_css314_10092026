@@ -6,7 +6,6 @@ import sys
 sys.path.append('src')
 from salt import get_student_params
 
-# 提取硬件信息 (Windows/macOS/Linux 通用)
 cpu_info = {
     "processor": platform.processor(),
     "cores_physical": psutil.cpu_count(logical=False),
@@ -15,7 +14,6 @@ cpu_info = {
     "python": sys.version
 }
 
-# 使用你的学号 230103191
 student_params = get_student_params("230103191")
 
 os.makedirs("results", exist_ok=True)
